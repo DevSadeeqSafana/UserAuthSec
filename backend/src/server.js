@@ -81,10 +81,12 @@ app.get('/api/v1', (req, res) => {
 const authRoutes = require('./routes/authRoutes');
 const deviceRoutes = require('./routes/deviceRoutes');
 const adminRoutes = require('./routes/adminRoutes');
+const vaultRoutes = require('./routes/vaultRoutes');
 
 app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/devices', deviceRoutes);
 app.use('/api/v1/admin', adminRoutes);
+app.use('/api/v1/vault', vaultRoutes);
 
 // ============================================
 // Error Handling Middleware

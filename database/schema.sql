@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS users (
     last_failed_login DATETIME NULL,
     mfa_enabled BOOLEAN DEFAULT FALSE,
     mfa_secret VARCHAR(255) NULL,
+    vault_password_hash VARCHAR(255) NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     INDEX idx_email (email),
@@ -173,6 +174,28 @@ VALUES (
     TRUE,
     FALSE
 ) ON DUPLICATE KEY UPDATE email=email;
+
+-- = ============================================
+-- Table: vault_items
+-- Stores sensitive encrypted information
+-- ============================================
+CREATE TABLE IF NOT EXISTS vault_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    content_encrypted TEXT NULL,
+    file_name VARCHAR(255) NULL,
+    original_name VARCHAR(255) NULL,
+    mime_type VARCHAR(100) NULL,
+    file_size INT NULL,
+    category ENUM('note', 'password', 'document', 'file', 'other') DEFAULT 'note',
+    last_accessed_at DATETIME NULL,
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    INDEX idx_user_id (user_id),
+    INDEX idx_category (category)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================
 -- Create views for analytics

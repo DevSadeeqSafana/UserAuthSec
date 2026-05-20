@@ -25,7 +25,7 @@ class MFAService {
         const mfaToken = await MFAToken.create({
             user_id: user.id,
             token: otp,
-            type: 'EMAIL',
+            type: 'email_otp',
             expires_at: expiresAt
         });
 

@@ -34,6 +34,7 @@ const MFAToken = sequelize.define('MFAToken', {
 }, {
     tableName: 'mfa_tokens',
     timestamps: true,
+    updatedAt: false,
     underscored: true
 });
 

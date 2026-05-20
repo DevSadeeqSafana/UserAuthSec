@@ -241,7 +241,7 @@ exports.login = async (req, res, next) => {
                 deviceId: context.device ? context.device.id : null,
                 ip: context.ip,
                 geolocation: context.geolocation,
-                status: 'ERROR',
+                status: 'failed',
                 riskScore: 0
             });
         }

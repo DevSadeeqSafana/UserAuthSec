@@ -20,7 +20,7 @@ class BehaviorService {
                     { ip_address: ip },
                     userId ? { user_id: userId } : null
                 ].filter(Boolean),
-                status: 'FAILED',
+                status: 'failed',
                 attempted_at: { [Op.gte]: timeWindow }
             }
         });
@@ -37,7 +37,7 @@ class BehaviorService {
         if (!userId) return 0;
 
         const recentLogins = await LoginAttempt.findAll({
-            where: { user_id: userId, status: 'SUCCESS' },
+            where: { user_id: userId, status: 'success' },
             limit: 20,
             order: [['attempted_at', 'DESC']]
         });

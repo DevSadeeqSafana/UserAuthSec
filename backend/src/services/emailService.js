@@ -61,17 +61,23 @@ class EmailService {
                 await this.transporter.sendMail(mailOptions);
                 console.log(`[EMAIL] OTP sent to ${to}`);
             } catch (error) {
-                console.error('[EMAIL ERROR] Failed to send email:', error.message);
-                throw new Error('Failed to send verification email');
+                console.warn('[EMAIL WARNING] Failed to send real email, falling back to simulation:', error.message);
+                this.logSimulatedEmail(to, otp);
             }
         } else {
-            // Simulated mode for development without SMTP credentials
-            console.log('\n=======================================');
-            console.log('📧 [SIMULATED EMAIL SERVICE]');
-            console.log(`TO: ${to}`);
-            console.log(`CODE: ${otp}`);
-            console.log('=======================================\n');
+            this.logSimulatedEmail(to, otp);
         }
+    }
+
+    /**
+     * Log the email to console for development
+     */
+    logSimulatedEmail(to, otp) {
+        console.log('\n=======================================');
+        console.log('📧 [SIMULATED EMAIL SERVICE]');
+        console.log(`TO: ${to}`);
+        console.log(`CODE: ${otp}`);
+        console.log('=======================================\n');
     }
 }
 

@@ -63,7 +63,7 @@ class RiskEngine {
         }
 
         // Check if user has used this device before (recognized but not trusted)
-        return { points: 20, description: 'Recognized but untrusted device' };
+        return { points: 40, description: 'New or untrusted device fingerprint' };
     }
 
     /**
@@ -76,8 +76,8 @@ class RiskEngine {
 
         // Get last successful login location
         const lastSuccess = await LoginAttempt.findOne({
-            where: { user_id: userId, status: 'SUCCESS' },
-            order: [['created_at', 'DESC']]
+            where: { user_id: userId, status: 'success' },
+            order: [['attempted_at', 'DESC']]
         });
 
         if (!lastSuccess || !lastSuccess.geolocation) {

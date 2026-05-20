@@ -5,6 +5,7 @@ const LoginAttempt = require('./LoginAttempt');
 const AdminLog = require('./AdminLog');
 const MFAToken = require('./MFAToken');
 const PasswordReset = require('./PasswordReset');
+const VaultItem = require('./VaultItem');
 
 // Associations
 User.hasMany(Device, { foreignKey: 'user_id' });
@@ -34,6 +35,9 @@ AdminLog.belongsTo(User, { foreignKey: 'target_user_id', as: 'TargetUser' });
 User.hasMany(PasswordReset, { foreignKey: 'user_id' });
 PasswordReset.belongsTo(User, { foreignKey: 'user_id' });
 
+User.hasMany(VaultItem, { foreignKey: 'user_id' });
+VaultItem.belongsTo(User, { foreignKey: 'user_id' });
+
 module.exports = {
     User,
     Device,
@@ -41,5 +45,6 @@ module.exports = {
     LoginAttempt,
     AdminLog,
     MFAToken,
-    PasswordReset
+    PasswordReset,
+    VaultItem
 };

@@ -10,7 +10,8 @@ import {
     ShieldCheck, 
     Activity, 
     Globe,
-    Bell
+    Bell,
+    Lock
 } from 'lucide-react';
 
 import { toast } from 'sonner';
@@ -40,6 +41,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
     const navItems = [
         { name: 'Dashboard', icon: LayoutDashboard, path: '/dashboard', active: location.pathname === '/dashboard' },
+        { name: 'Secure Vault', icon: Lock, path: '/vault', active: location.pathname === '/vault' },
         { name: 'Profile', icon: UserIcon, path: '/profile', active: location.pathname === '/profile' },
         { name: 'Security', icon: ShieldCheck, path: '/security', active: location.pathname === '/security' },
         { name: 'Settings', icon: Settings, path: '/settings', active: location.pathname === '/settings' },

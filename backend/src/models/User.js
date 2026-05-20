@@ -52,6 +52,10 @@ const User = sequelize.define('User', {
     mfa_secret: {
         type: DataTypes.STRING(255),
         allowNull: true
+    },
+    vault_password_hash: {
+        type: DataTypes.STRING(255),
+        allowNull: true
     }
 }, {
     tableName: 'users',

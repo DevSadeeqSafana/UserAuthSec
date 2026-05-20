@@ -8,6 +8,7 @@ import AdminDashboardPage from './pages/AdminDashboardPage';
 import ProfilePage from './pages/ProfilePage';
 import SecurityPage from './pages/SecurityPage';
 import SettingsPage from './pages/SettingsPage';
+import VaultPage from './pages/VaultPage';
 import { getCurrentUser } from './services/authService';
 
 import Layout from './components/Layout';
@@ -54,6 +55,7 @@ const App: React.FC = () => {
           <Route path="/profile" element={<ProtectedRoute><ProfilePage /></ProtectedRoute>} />
           <Route path="/security" element={<ProtectedRoute><SecurityPage /></ProtectedRoute>} />
           <Route path="/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
+          <Route path="/vault" element={<ProtectedRoute><VaultPage /></ProtectedRoute>} />
           
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
         </Routes>
