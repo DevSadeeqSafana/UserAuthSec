@@ -40,6 +40,11 @@ const Session = sequelize.define('Session', {
     expires_at: {
         type: DataTypes.DATE,
         allowNull: false
+    },
+    metadata: {
+        type: DataTypes.JSON,
+        allowNull: true,
+        defaultValue: null
     }
 }, {
     tableName: 'sessions',

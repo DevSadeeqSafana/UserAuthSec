@@ -98,6 +98,7 @@ CREATE TABLE IF NOT EXISTS sessions (
     user_agent TEXT NULL,
     is_active BOOLEAN DEFAULT TRUE,
     expires_at DATETIME NOT NULL,
+    metadata JSON NULL,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
@@ -106,6 +107,7 @@ CREATE TABLE IF NOT EXISTS sessions (
     INDEX idx_user_id (user_id),
     INDEX idx_expires_at (expires_at)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 -- ============================================
 -- Table: mfa_tokens
